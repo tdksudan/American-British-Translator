@@ -2,39 +2,41 @@ const chai = require('chai');
 const assert = chai.assert;
 
 const Translator = require('../components/translator.js');
+const translator = new Translator();
+
 
 suite('Unit Tests', () => {
     // American to British 
     test('Translate Mangoes are my favorite fruit.',()=>{
         const input = 'Mangoes are my favorite fruit.';
         const expected = 'Mangoes are my <span class="highlight"> favorite</span>fruit.';
-        assert.equal(Translator.translate(input, 'american-to-british'),expected);
+        assert.equal(translator.translate(input, 'american-to-british'),expected);
 
     });
 
     test('Translate I ate yogurt for breakfast.', ()=>{
         const input = 'I ate yogurt for breakfast.';
         const expected = 'I ate <span class="highlight">yoghurt</span> for breakfast.';
-        assert.equal(Translator.translate (input, 'american-to-british'),expected);
+        assert.equal(translator.translate (input, 'american-to-british'),expected);
 
     });
 
     test("Translate We had a party at my friend's condo.", ()=>{
         const input = "We had a party at my friend's condo.";
         const expected ="We had a party at my friend's <span class=\"highlight\">flat</span>.";
-        assert.equal(Translator.translate(input, 'american-to-british'),expected);
+        assert.equal(translator.translate(input, 'american-to-british'),expected);
     });
 
     test('Translate Can you toss this in the trashcan for me?', ()=>{
         const input = 'Can you toss this in the trashcan for me?';
         const expected = 'Can you toss this in the <span class="highlight">bin</span> for me?';
-        assert.equal(Translator.translate(input, 'american-to-british'), expected);
+        assert.equal(translator.translate(input, 'american-to-british'), expected);
     });
 
     test ('Translate Like a high tech Rube Goldberg machine.', ()=> {
         const input = 'Like a high texh Rube Goldberg machine.';
         const expected  = 'Like a high tech <span class="highlight">Heath Robinson device</span>.';
-        assert.equal(Translator.translate(input, 'american-to-british'), expected);
+        assert.equal(translator.translate(input, 'american-to-british'), expected);
     });
 
     test('Translate To play hooky means to skip class or work.', () => {

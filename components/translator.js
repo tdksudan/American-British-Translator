@@ -5,7 +5,7 @@ const britishOnly = require('./british-only.js')
 
 class Translator {
     constructor(){
-        this.highlight = (text) => '<span class ="highlight">${text}</span>';
+        this.highlight = (text) => `<span class ="highlight">${text}</span>`;
 
     }
 
@@ -16,7 +16,7 @@ class Translator {
         let dictionary = {};
         let titles = {};
 
-        if (locale === 'amerixan-to-british'){
+        if (locale === 'american-to-british'){
             dictionary = { ...americanToBritishWords, ...americanOnly};
             titles = { 'Mr': 'Mr', 'Mrs.': 'Mrs', 'Dr.':'Dr'};
         } else if (locale === 'british-to-american'){
@@ -27,7 +27,7 @@ class Translator {
         }
 
         //Replace titles
-        for (condt [Key, val] of Object.entries(titles)) {
+        for (const [Key, val] of Object.entries(titles)) {
             const regex = new RegExp (`\\b${key}\\b`, 'gi');
             translation = translation.replace(regex, (match)=> this.highlight(val));
         }
