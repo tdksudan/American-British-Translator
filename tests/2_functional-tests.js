@@ -54,6 +54,36 @@ suite('Functional Tests', () => {
                 done();
               });
         });
+
+        test('Translation with missing locale field', (done) =>{
+          chai
+             .request(server)
+             .post('/api/translate')
+             .send({
+              text: 'Mangoes are my favorite fruit.'
+             })
+            .end((err, res)=>{
+              assert.equal(res.status, 200);
+              assert.deepEqual(res.body, {error: 'Required field(s) missing'});
+              done();
+            });
+             
+        });
+
+        test('Translation with empty text',(done)=>{
+          chai
+             .request(server)
+             .post('/api/translate')
+             .send({
+              text: '',
+              locale: 'american-to-british'
+             })
+             .end((err, res)=>{
+              assert.equal(res.status, 200);
+              assert.deepEqual(res.body, {error: 'No text to translate'});
+              done();
+             });
+        });
     })
 
 });
