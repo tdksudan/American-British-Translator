@@ -84,6 +84,22 @@ suite('Functional Tests', () => {
               done();
              });
         });
+
+        test('Translation with text that needs no translattion', (done)=>{
+          chai 
+            .request(server)
+            .post('/api/translate')
+            .send({
+              text: 'This sentence is already British.',
+              locale: 'american-to-british'
+            })
+            .end((err, res)=>{
+              assert.equal (res.body, {
+                text: 'This sentence is already British.',
+                translation: 'Everything looks good to me!'
+              })
+            })
+        })
     })
 
 });
