@@ -14,7 +14,7 @@ suite('Functional Tests', () => {
               .request(server)
               .post('/api/translate')
               .send({
-                text: 'Mangoes are my favorite fruit.';
+                text: 'Mangoes are my favorite fruit.',
                 locale: 'american-to-british'
               })
               .end((err, res) => {

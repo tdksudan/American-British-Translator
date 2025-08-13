@@ -9,7 +9,7 @@ suite('Unit Tests', () => {
     // American to British 
     test('Translate Mangoes are my favorite fruit.',()=>{
         const input = 'Mangoes are my favorite fruit.';
-        const expected = 'Mangoes are my <span class="highlight"> favorite</span>fruit.';
+        const expected = 'Mangoes are my <span class="highlight">favourite</span> fruit.';
         assert.equal(translator.translate(input, 'american-to-british'),expected);
 
     });
@@ -34,7 +34,7 @@ suite('Unit Tests', () => {
     });
 
     test ('Translate Like a high tech Rube Goldberg machine.', ()=> {
-        const input = 'Like a high texh Rube Goldberg machine.';
+        const input = 'Like a high tech Rube Goldberg machine.';
         const expected  = 'Like a high tech <span class="highlight">Heath Robinson device</span>.';
         assert.equal(translator.translate(input, 'american-to-british'), expected);
     });
