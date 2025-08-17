@@ -3,6 +3,7 @@ const americanToBritishSpelling = require('./american-to-british-spelling.js');
 const americanToBritishTitles = require("./american-to-british-titles.js")
 const britishOnly = require('./british-only.js')
 
+
 class Translator {
     constructor() {
         this.highlight = (text) => `<span class="highlight">${text}</span>`;
@@ -32,11 +33,12 @@ class Translator {
         for (const [key, val] of Object.entries(titles)) {
             const regex = new RegExp(`\\b${key.replace('.', '\\.')}\\b`, 'gi');
             translation = translation.replace(regex, (match) => {
-                // Preserve punctuation if present
-                const trailingPunct = match.endsWith('.') ? '.' : '';
-                return this.highlight(val) + trailingPunct;
+                const hasPeriod = match.endsWith('.') ? '.' : '';
+                const cleanMatch = match.replace('.', '');
+                return this.highlight(val) + hasPeriod;
             });
         }
+
 
 
         //Replace dictionary entires
