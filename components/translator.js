@@ -31,12 +31,17 @@ class Translator {
 
         //Replace titles
         for (const [key, val] of Object.entries(titles)) {
-            const regex = new RegExp(`\\b${key.replace('.', '\\.')}\\b`, 'gi');
+            const baseTitle = key.slice(0, -1); // e.g., "Mr"
+            const regex = new RegExp(`\\b${baseTitle}\\.?(?=\\s)`, 'gi'); // Match "Mr." only if followed by space
+
             translation = translation.replace(regex, (match) => {
-                const hasPeriod = match.endsWith('.') ? '.' : '';
-                const cleanMatch = match.replace('.', '');
-                return this.highlight(val) + hasPeriod;
+                const preservedCase = match[0] === match[0].toUpperCase()
+                    ? val.charAt(0).toUpperCase() + val.slice(1)
+                    : val;
+
+                return this.highlight(preservedCase); // No period added
             });
+            console.log('Translated:', translation);
         }
 
 
