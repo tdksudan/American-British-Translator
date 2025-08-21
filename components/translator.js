@@ -21,7 +21,14 @@ class Translator {
             dictionary = { ...americanToBritishSpelling, ...americanOnly };
             titles = americanToBritishTitles;
         } else if (locale === 'british-to-american') {
-            dictionary = { ...britishToAmericanWords, ...britishOnly };
+            // Reverse americanToBritishSpelling
+            const reversedSpelling = Object.fromEntries(
+                Object.entries(americanToBritishSpelling).map(([key, val]) => [val, key])
+            );
+
+            dictionary = { ...reversedSpelling, ...britishOnly };
+
+            // Reverse titles
             titles = Object.fromEntries(
                 Object.entries(americanToBritishTitles).map(([key, val]) => [val, key])
             );
@@ -47,9 +54,16 @@ class Translator {
 
 
         //Replace dictionary entires
-        for (const [key, val] of Object.entries(dictionary)) {
+        // Sort dictionary keys by length descending
+        const sortedEntries = Object.entries(dictionary).sort((a, b) => b[0].length - a[0].length);
+
+        for (const [key, val] of sortedEntries) {
             const regex = new RegExp(`\\b${key}\\b`, 'gi');
-            translation = translation.replace(regex, (match) => this.highlight(val));
+            translation = translation.replace(regex, (match) => {
+                // Avoid replacing inside already-highlighted spans
+                if (translation.includes(this.highlight(match))) return match;
+                return this.highlight(val);
+            });
         }
 
         //Handle time format conversion
