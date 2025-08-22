@@ -12,7 +12,7 @@ module.exports = function (app) {
 
       //Validate presence of fields
       if (text === undefined || locale === undefined){
-        return res.json({error: 'Required fiedls(s) missing'});
+        return res.json({error: 'Required field(s) missing'});
 
       }
 

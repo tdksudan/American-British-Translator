@@ -44,13 +44,13 @@ suite('Functional Tests', () => {
         test('Translation with missing text field', (done)=>{
             chai 
               .request(server)
-              .post('/api/translator')
+              .post('/api/translate')
               .send({
                 locale: 'american-to-british'
               })
               .end((err, res) =>{
                 assert.equal(res.status, 200);
-                assert.deepEqual(res.body, {error: 'Required field(s) missning'});
+                assert.deepEqual(res.body, {error: 'Required field(s) missing'});
                 done();
               });
         });
@@ -94,12 +94,13 @@ suite('Functional Tests', () => {
               locale: 'american-to-british'
             })
             .end((err, res)=>{
-              assert.equal (res.body, {
+              assert.deepEqual (res.body, {
                 text: 'This sentence is already British.',
                 translation: 'Everything looks good to me!'
-              })
-            })
-        })
+              });
+              done();
+            });
+        });
     })
 
 });

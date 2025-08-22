@@ -6,40 +6,46 @@ const translator = new Translator();
 
 
 suite('Unit Tests', () => {
-    // American to British 
-    test('Translate Mangoes are my favorite fruit.',()=>{
-        const input = 'Mangoes are my favorite fruit.';
-        const expected = 'Mangoes are my <span class="highlight">favourite</span> fruit.';
-        assert.equal(translator.translate(input, 'american-to-british'),expected);
+  // American to British 
+  test('Translate Mangoes are my favorite fruit.', () => {
+    const input = 'Mangoes are my favorite fruit.';
+    const expected = 'Mangoes are my <span class="highlight">favourite</span> fruit.';
+    assert.equal(translator.translate(input, 'american-to-british'), expected);
 
-    });
+  });
 
-    test('Translate I ate yogurt for breakfast.', ()=>{
-        const input = 'I ate yogurt for breakfast.';
-        const expected = 'I ate <span class="highlight">yoghurt</span> for breakfast.';
-        assert.equal(translator.translate (input, 'american-to-british'),expected);
+  test('Translate I ate yogurt for breakfast.', () => {
+    const input = 'I ate yogurt for breakfast.';
+    const expected = 'I ate <span class="highlight">yoghurt</span> for breakfast.';
+    assert.equal(translator.translate(input, 'american-to-british'), expected);
 
-    });
+  });
 
-    test("Translate We had a party at my friend's condo.", ()=>{
-        const input = "We had a party at my friend's condo.";
-        const expected ="We had a party at my friend's <span class=\"highlight\">flat</span>.";
-        assert.equal(translator.translate(input, 'american-to-british'),expected);
-    });
+  test("Translate We had a party at my friend's condo.", () => {
+    const input = "We had a party at my friend's condo.";
+    const expected = "We had a party at my friend's <span class=\"highlight\">flat</span>.";
+    assert.equal(translator.translate(input, 'american-to-british'), expected);
+  });
 
-    test('Translate Can you toss this in the trashcan for me?', ()=>{
-        const input = 'Can you toss this in the trashcan for me?';
-        const expected = 'Can you toss this in the <span class="highlight">bin</span> for me?';
-        assert.equal(translator.translate(input, 'american-to-british'), expected);
-    });
+  test('Translate Can you toss this in the trashcan for me?', () => {
+    const input = 'Can you toss this in the trashcan for me?';
+    const expected = 'Can you toss this in the <span class="highlight">bin</span> for me?';
+    assert.equal(translator.translate(input, 'american-to-british'), expected);
+  });
 
-    test ('Translate Like a high tech Rube Goldberg machine.', ()=> {
-        const input = 'Like a high tech Rube Goldberg machine.';
-        const expected  = 'Like a high tech <span class="highlight">Heath Robinson device</span>.';
-        assert.equal(translator.translate(input, 'american-to-british'), expected);
-    });
+  test('Translate The parking lot was full.', () => {
+    const input = 'The parking lot was full.';
+    const expected = 'The <span class="highlight">car park</span> was full.';
+    assert.equal(translator.translate(input, 'american-to-british'), expected);
+  });
 
-    test('Translate To play hooky means to skip class or work.', () => {
+  test('Translate Like a high tech Rube Goldberg machine.', () => {
+    const input = 'Like a high tech Rube Goldberg machine.';
+    const expected = 'Like a high tech <span class="highlight">Heath Robinson device</span>.';
+    assert.equal(translator.translate(input, 'american-to-british'), expected);
+  });
+
+  test('Translate To play hooky means to skip class or work.', () => {
     const input = 'To play hooky means to skip class or work.';
     const expected = 'To <span class="highlight">bunk off</span> means to skip class or work.';
     assert.equal(translator.translate(input, 'american-to-british'), expected);

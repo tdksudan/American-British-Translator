@@ -38,17 +38,16 @@ class Translator {
 
         //Replace titles
         for (const [key, val] of Object.entries(titles)) {
-            const baseTitle = key.slice(0, -1); // e.g., "Mr"
-            const regex = new RegExp(`\\b${baseTitle}\\.?(?=\\s)`, 'gi'); // Match "Mr." only if followed by space
+            const escapedKey = key.replace('.', '\\.');
+            const regex = new RegExp(`\\b${escapedKey}(?=\\s)`, 'gi');
 
             translation = translation.replace(regex, (match) => {
                 const preservedCase = match[0] === match[0].toUpperCase()
                     ? val.charAt(0).toUpperCase() + val.slice(1)
                     : val;
-
-                return this.highlight(preservedCase); // No period added
+                return this.highlight(preservedCase);
             });
-            console.log('Translated:', translation);
+           console.log(translation);
         }
 
 
